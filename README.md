@@ -1,6 +1,16 @@
 
 # clean-videostore
 
+## Author
+MRIZAK Adem
+3AL1 - ESGI
+
+## Statistics
+Different code smells detected : **6**
+Different refactoring techniques used : **7**
+
+## Description
+
 #### Movie.java
 |CODE SMELLS|REFACTORING TECHNIQUES|BENEFITS|  
 |--|--|--|  
