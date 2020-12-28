@@ -8,23 +8,23 @@ public class Statement {
     final static int BIG_BONUS = 2;
     final static int REGULAR_BONUS = 1;
 
-    public String getStatement(List<Rental> rentals, String name) {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        StringBuilder result = new StringBuilder();
+    double totalAmount = 0;
+    int frequentRenterPoints = 0;
+    StringBuilder result = new StringBuilder();
 
-        result.append(this.createStatementHeader(name));
+    public String getStatement(List<Rental> rentals, String name) {
+        this.result.append(this.createStatementHeader(name));
         AmountComputer amountComputer = new AmountComputer();
 
         for (Rental rental : rentals) {
             double amount = amountComputer.compute(rental);
-            frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
-            result.append(createStatementRental(rental.getTitle(), amount));
-            totalAmount += amount;
+            this.frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
+            this.result.append(createStatementRental(rental.getTitle(), amount));
+            this.totalAmount += amount;
         }
 
-        result.append(this.createStatementFooter(totalAmount, frequentRenterPoints));
-        return result.toString();
+        this.result.append(this.createStatementFooter(this.totalAmount, this.frequentRenterPoints));
+        return this.result.toString();
     }
 
     private String createStatementHeader(String name) {

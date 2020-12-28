@@ -10,11 +10,11 @@ public class Movie {
     }
 
     public MovieType getMovieType() {
-        return movieType;
+        return this.movieType;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
 }

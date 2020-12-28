@@ -10,14 +10,14 @@ public class Rental {
     }
 
     public int getDaysRented() {
-        return daysRented;
+        return this.daysRented;
     }
 
     public MovieType getMovieType() {
-        return movie.getMovieType();
+        return this.movie.getMovieType();
     }
 
     public String getTitle() {
-        return movie.getTitle();
+        return this.movie.getTitle();
     }
 }
