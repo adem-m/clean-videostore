@@ -13,10 +13,6 @@ public class Rental {
         return daysRented;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
-
     public MovieType getMovieType() {
         return movie.getMovieType();
     }

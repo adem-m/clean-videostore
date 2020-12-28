@@ -6,8 +6,8 @@ MRIZAK Adem
 3AL1 - ESGI
 
 ## Statistics
-Different code smells detected : **6**
-Different refactoring techniques used : **7**
+Different code smells detected : **7**
+Different refactoring techniques used : **8**
 
 ## Description
 
@@ -22,6 +22,7 @@ Different refactoring techniques used : **7**
 |CODE SMELLS|REFACTORING TECHNIQUES|BENEFITS|  
 |--|--|--|  
 |Non-final attributes|Make them final|Avoid future errors|
+|Dead code|Delete unused code|Reduced code size|
 
 #### Customer.java
 |CODE SMELLS|REFACTORING TECHNIQUES|BENEFITS|  
@@ -31,3 +32,4 @@ Different refactoring techniques used : **7**
 |Primitive obsession|Replace data value with object|More maintainable code|
 |Bad variable name|Change variable name|Clearer code|
 |Long method|Extract method|More understandable and maintainable code|
+|Large class|Extract class|Shorter classes, more readable code|
