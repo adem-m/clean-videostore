@@ -16,4 +16,12 @@ public class Rental {
     public Movie getMovie() {
         return movie;
     }
+
+    public MovieType getMovieType() {
+        return movie.getMovieType();
+    }
+
+    public String getTitle() {
+        return movie.getTitle();
+    }
 }

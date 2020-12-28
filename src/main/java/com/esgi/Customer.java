@@ -1,70 +1,104 @@
 package com.esgi;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.esgi.MovieType.*;
 
 public class Customer {
+    private final String name;
+    private final List<Rental> rentals = new ArrayList<>();
+
     public Customer(String name) {
         this.name = name;
     }
 
     public void addRental(Rental rental) {
-        rentals.addElement(rental);
+        this.rentals.add(rental);
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public String statement() {
+    public String createStatement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration rentals = this.rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
+        StringBuilder result = new StringBuilder();
 
-        while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
-            Rental each = (Rental) rentals.nextElement();
+        result.append(this.createStatementHeader(this.getName()));
 
-            // determines the amount for each line
-            switch (each.getMovie().getMovieType()) {
-                case REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case CHILDREN:
-                    thisAmount += 1.5;
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
-
-            frequentRenterPoints++;
-
-            if (each.getMovie().getMovieType() == NEW_RELEASE
-                    && each.getDaysRented() > 1)
-                frequentRenterPoints++;
-
-            result += "\t" + each.getMovie().getTitle() + "\t"
-                    + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
-
+        for (Rental rental : this.rentals) {
+            double amount = this.getAmountFromRental(rental);
+            frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
+            result.append(createStatementRental(rental.getTitle(), amount));
+            totalAmount += amount;
         }
 
-        result += "You owed " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
-
-
-        return result;
+        result.append(this.createStatementFooter(totalAmount, frequentRenterPoints));
+        return result.toString();
     }
 
+    private double getAmountFromRental(Rental rental) {
+        double amount = 0;
+        MovieType type = rental.getMovieType();
+        if (type == REGULAR) {
+            amount += computeAmountOfRegularRental(rental);
+        } else if (type == NEW_RELEASE) {
+            amount += computeAmountOfNewReleaseRental(rental);
+        } else if (type == CHILDREN) {
+            amount += computeAmountOfChildrenRental(rental);
+        }
 
-    private String name;
-    private Vector rentals = new Vector();
+        return amount;
+    }
+
+    private String createStatementHeader(String name) {
+        return "Rental Record for " +
+                name +
+                "\n";
+    }
+
+    private String createStatementRental(String title, double amount) {
+        return "\t" +
+                title +
+                "\t" +
+                amount +
+                "\n";
+    }
+
+    private String createStatementFooter(double totalAmount, int frequentRenterPoints) {
+        return "You owed " +
+                totalAmount +
+                "\nYou earned " +
+                frequentRenterPoints +
+                " frequent renter points\n";
+    }
+
+    private int computeFrequentRenterPointsIncrement(Rental rental) {
+        if (rental.getMovieType() == NEW_RELEASE && rental.getDaysRented() > 1) {
+            return 2;
+        }
+        return 1;
+    }
+
+    private double computeAmountOfRegularRental(Rental rental) {
+        double amount = 2;
+        if (rental.getDaysRented() > 2) {
+            amount += (rental.getDaysRented() - 2) * 1.5;
+        }
+        return amount;
+    }
+
+    private double computeAmountOfNewReleaseRental(Rental rental) {
+        return rental.getDaysRented() * 3;
+    }
+
+    private double computeAmountOfChildrenRental(Rental rental) {
+        double amount = 1.5;
+        if (rental.getDaysRented() > 3) {
+            amount += (rental.getDaysRented() - 3) * 1.5;
+        }
+        return amount;
+    }
 }
