@@ -5,26 +5,26 @@ import java.util.List;
 import static com.esgi.MovieType.*;
 
 public class Statement {
-    final static int BIG_BONUS = 2;
-    final static int REGULAR_BONUS = 1;
-
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
-    StringBuilder result = new StringBuilder();
+    private final static int BIG_BONUS = 2;
+    private final static int REGULAR_BONUS = 1;
 
     public String getStatement(List<Rental> rentals, String name) {
-        this.result.append(this.createStatementHeader(name));
+        double totalAmount = 0;
+        int frequentRenterPoints = 0;
+        StringBuilder result = new StringBuilder();
         AmountComputer amountComputer = new AmountComputer();
+
+        result.append(this.createStatementHeader(name));
 
         for (Rental rental : rentals) {
             double amount = amountComputer.compute(rental);
-            this.frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
-            this.result.append(createStatementRental(rental.getTitle(), amount));
-            this.totalAmount += amount;
+            frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
+            result.append(createStatementRental(rental.getTitle(), amount));
+            totalAmount += amount;
         }
 
-        this.result.append(this.createStatementFooter(this.totalAmount, this.frequentRenterPoints));
-        return this.result.toString();
+        result.append(this.createStatementFooter(totalAmount, frequentRenterPoints));
+        return result.toString();
     }
 
     private String createStatementHeader(String name) {

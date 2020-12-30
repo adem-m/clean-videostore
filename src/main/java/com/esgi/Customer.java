@@ -3,8 +3,6 @@ package com.esgi;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.esgi.MovieType.*;
-
 public class Customer {
     private final String name;
     private final List<Rental> rentals = new ArrayList<>();

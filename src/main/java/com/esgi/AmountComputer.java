@@ -14,7 +14,6 @@ public class AmountComputer {
             // this is for "regular or another new type" movie
             amount += computeAmountOfRegularRental(rental);
         }
-
         return amount;
     }
 
