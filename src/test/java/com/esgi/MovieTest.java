@@ -4,15 +4,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MovieTest {
+    private final Movie regular = new Movie("Titanic", MovieType.REGULAR);
+
     @Test
-    public void should_get_movie_title_when_getter_is_used() {
-        Movie movie = new Movie("Titanic", MovieType.REGULAR);
-        Assert.assertEquals("Titanic", movie.getTitle());
+    public void Should_GetMovieTitle_When_GetterIsUsed() {
+        Assert.assertEquals("Titanic", this.regular.getTitle());
     }
 
     @Test
-    public void should_get_movie_type_when_getter_is_used() {
-        Movie movie = new Movie("Titanic", MovieType.REGULAR);
-        Assert.assertEquals(MovieType.REGULAR, movie.getMovieType());
+    public void Should_GetMovieType_When_GetterIsUsed() {
+        Assert.assertEquals(MovieType.REGULAR, this.regular.getMovieType());
     }
 }

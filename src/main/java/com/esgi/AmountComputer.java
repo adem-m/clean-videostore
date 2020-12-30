@@ -6,12 +6,13 @@ public class AmountComputer {
     public double compute(Rental rental) {
         double amount = 0;
         MovieType type = rental.getMovieType();
-        if (type == REGULAR) {
-            amount += computeAmountOfRegularRental(rental);
+        if (type == CHILDREN) {
+            amount += computeAmountOfChildrenRental(rental);
         } else if (type == NEW_RELEASE) {
             amount += computeAmountOfNewReleaseRental(rental);
-        } else if (type == CHILDREN) {
-            amount += computeAmountOfChildrenRental(rental);
+        } else {
+            // this is for "regular or another new type" movie
+            amount += computeAmountOfRegularRental(rental);
         }
 
         return amount;

@@ -4,21 +4,20 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class RentalTest {
+    private final Rental rental = new Rental(new Movie("Titanic", MovieType.REGULAR), 5);
+
     @Test
-    public void should_get_days_rented_when_getter_is_used() {
-        Rental rental = new Rental(new Movie("Titanic", MovieType.REGULAR), 5);
-        Assert.assertEquals(5, rental.getDaysRented());
+    public void Should_GetDaysRented_When_GetterIsUsed() {
+        Assert.assertEquals(5, this.rental.getDaysRented());
     }
 
     @Test
-    public void should_get_movie_type_when_getter_is_used() {
-        Rental rental = new Rental(new Movie("Titanic", MovieType.REGULAR), 5);
-        Assert.assertEquals(MovieType.REGULAR, rental.getMovieType());
+    public void Should_GetMovieType_When_GetterIsUsed() {
+        Assert.assertEquals(MovieType.REGULAR, this.rental.getMovieType());
     }
 
     @Test
-    public void should_get_movie_title_when_getter_is_used() {
-        Rental rental = new Rental(new Movie("Titanic", MovieType.REGULAR), 5);
-        Assert.assertEquals("Titanic", rental.getTitle());
+    public void Should_GetMovieTitle_When_GetterIsUsed() {
+        Assert.assertEquals("Titanic", this.rental.getTitle());
     }
 }
