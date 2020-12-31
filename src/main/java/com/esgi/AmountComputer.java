@@ -5,7 +5,6 @@ import static com.esgi.MovieType.*;
 public class AmountComputer {
     static final double SHORT_REGULAR_RENTAL_LIMIT = 2;
     static final double BASE_REGULAR_RENTAL_AMOUNT = 2;
-
     static final double SHORT_CHILDREN_RENTAL_LIMIT = 3;
     static final double BASE_CHILDREN_RENTAL_AMOUNT = 1.5;
 

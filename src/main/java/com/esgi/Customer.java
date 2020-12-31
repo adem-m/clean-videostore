@@ -16,7 +16,7 @@ public class Customer {
     }
 
     public List<Rental> getRentals() {
-        return rentals;
+        return this.rentals;
     }
 
     public void addRental(Rental rental) {
