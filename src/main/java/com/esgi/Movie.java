@@ -16,5 +16,4 @@ public class Movie {
     public String getTitle() {
         return this.title;
     }
-
 }

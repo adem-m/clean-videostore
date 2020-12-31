@@ -20,7 +20,6 @@ public class Statement {
             result.append(generateStatementRental(rental.getTitle(), amount));
             totalAmount += amount;
         }
-
         result.append(this.generateStatementFooter(totalAmount, frequentRenterPoints));
         return result.toString();
     }

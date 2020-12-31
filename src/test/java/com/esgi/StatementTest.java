@@ -6,7 +6,7 @@ import org.junit.Test;
 public class StatementTest {
     @Test
     public void Should_GenerateStatement_When_MethodIsUsed() {
-        String name = "Alif";
+        String name = "Odessa";
         Customer customer = new Customer(name);
         customer.addRental(new Rental(
                 new Movie("Astérix", MovieType.CHILDREN),
