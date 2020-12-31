@@ -8,32 +8,32 @@ public class Statement {
     private final static int BIG_BONUS = 2;
     private final static int REGULAR_BONUS = 1;
 
-    public String getStatement(List<Rental> rentals, String name) {
+    public String generateStatement(Customer customer) {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         StringBuilder result = new StringBuilder();
         AmountComputer amountComputer = new AmountComputer();
 
-        result.append(this.createStatementHeader(name));
+        result.append(this.generateStatementHeader(customer.getName()));
 
-        for (Rental rental : rentals) {
+        for (Rental rental : customer.getRentals()) {
             double amount = amountComputer.compute(rental);
             frequentRenterPoints += computeFrequentRenterPointsIncrement(rental);
-            result.append(createStatementRental(rental.getTitle(), amount));
+            result.append(generateStatementRental(rental.getTitle(), amount));
             totalAmount += amount;
         }
 
-        result.append(this.createStatementFooter(totalAmount, frequentRenterPoints));
+        result.append(this.generateStatementFooter(totalAmount, frequentRenterPoints));
         return result.toString();
     }
 
-    private String createStatementHeader(String name) {
+    private String generateStatementHeader(String name) {
         return "Rental Record for " +
                 name +
                 "\n";
     }
 
-    private String createStatementRental(String title, double amount) {
+    private String generateStatementRental(String title, double amount) {
         return "\t" +
                 title +
                 "\t" +
@@ -41,7 +41,7 @@ public class Statement {
                 "\n";
     }
 
-    private String createStatementFooter(double totalAmount, int frequentRenterPoints) {
+    private String generateStatementFooter(double totalAmount, int frequentRenterPoints) {
         return "You owed " +
                 totalAmount +
                 "\nYou earned " +

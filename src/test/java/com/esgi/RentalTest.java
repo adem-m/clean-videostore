@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class RentalTest {
-    private final Rental rental = new Rental(new Movie("Titanic", MovieType.REGULAR), 5);
+    private final Rental rental = new Rental(
+            new Movie("Titanic", MovieType.REGULAR),
+            5);
 
     @Test
     public void Should_GetDaysRented_When_GetterIsUsed() {
