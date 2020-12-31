@@ -1,7 +1,5 @@
 package com.esgi;
 
-import java.util.List;
-
 import static com.esgi.MovieType.*;
 
 public class Statement {
