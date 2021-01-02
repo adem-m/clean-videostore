@@ -43,6 +43,7 @@ Customer class has been split in 3 subclasses:
 - AmountComputer
 
 Each class has its test class.
+The rental vector has been changed to a rental list.
 I removed the original test class and divided its methods in several classes.
 I tried to make methods as short as possible. The biggest one is 17 lines long.
 I used STATIC_VARIABLES instead of "magic numbers" to make the code more readable.
